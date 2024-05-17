@@ -919,8 +919,13 @@ begin
     begin
       try
         LJSONValue := WriteDataMember(LNeonMember.GetValue(AInstance), True, LNeonMember);
-        if Assigned(LJSONValue) and not (LNeonMember.NeonDewrapped) then
+        if Assigned(LJSONValue) then
         begin
+          if LNeonMember.NeonDewrapped then
+          begin
+            LJSONValue.Free();
+            Continue;
+          end;
           // if it's unwrapped add childs to the AResult JSON object
           if LNeonMember.NeonUnwrapped and (LJSONValue is TJSONObject) then
           begin
