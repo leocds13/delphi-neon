@@ -282,6 +282,7 @@ type
     FNeonSerializerClass: TClass;
     FNeonRawValue: Boolean;
     FNeonUnwrapped: Boolean;
+    FNeonDewrapped: Boolean;
   protected
     procedure InternalParseAttributes(const AAttr: TArray<TCustomAttribute>); virtual;
     procedure ProcessAttribute(AAttribute: TCustomAttribute); virtual;
@@ -306,6 +307,7 @@ type
     property NeonMembers: TNeonMembersSet read FNeonMembers write FNeonMembers;
     property NeonVisibility: TNeonVisibility read FNeonVisibility write FNeonVisibility;
     property NeonUnwrapped: Boolean read FNeonUnwrapped write FNeonUnwrapped;
+    property NeonDewrapped: Boolean read FNeonDewrapped write FNeonDewrapped;
     property NeonAutoCreate: Boolean read FNeonAutoCreate write FNeonAutoCreate;
     property NeonFactoryClass: TCustomFactoryClass read FNeonFactoryClass write FNeonFactoryClass;
     property NeonItemFactoryClass: TCustomFactoryClass read FNeonItemFactoryClass write FNeonItemFactoryClass;
@@ -1238,6 +1240,8 @@ begin
       FNeonMembers := (LAttribute as NeonMembersSetAttribute).Value
     else if LAttribute is NeonUnwrappedAttribute then
       FNeonUnwrapped := True  //Only applicable to complex types (classes, records, interfaces)
+    else if LAttribute is NeonDewrappedAttribute then
+      FNeonDewrapped := True  //Only applicable to complex types (classes, records, interfaces)
     else if LAttribute is NeonAutoCreateAttribute then
       FNeonAutoCreate := True;  //Only applicable to class types
 

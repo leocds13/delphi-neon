@@ -87,6 +87,15 @@ type
   NeonUnwrappedAttribute = class(NeonAttribute);
 
   /// <summary>
+  ///   The Neon attribute [NeonDewrapped] is a property/field annotation thats
+  ///   the oposite to the [NeonUnwrapped].
+  /// </summary>
+  /// <remarks>
+  ///   Must be applied only to class/record's properties/fields
+  /// </remarks>
+  NeonDewrappedAttribute = class(NeonAttribute);
+
+  /// <summary>
   ///   The IncludeIf enum values define when to include the field or property.
   /// </summary>
   IncludeIf = (
